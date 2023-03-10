@@ -1,3 +1,5 @@
+import pygame
+
 #Credit to Geeks for Geeks Website for pseudocode on how to do selection sort
 def selectionSort(list):
     for i in range(0, len(list)):
