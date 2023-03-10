@@ -15,6 +15,13 @@ def screenControl ():
 if __name__ = "__screenControl__":
     screenControl()
 
+def insertionSort(list):
+    for i in range(1, len(list)):
+        j = i
+        while j > 0 && list[j - 1] > list[j]:
+            list[j - 1], list[j] = list[j], list[j-1]
+            j = j -1
+
 #Credit to Geeks for Geeks Website for pseudocode on how to do selection sort
 def selectionSort(list):
     for i in range(0, len(list)):
