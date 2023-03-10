@@ -1,7 +1,13 @@
 import pygame
+import random
+
+listOfChoice = []
+
 #Pygame coding basics learned from TechWithTim
 WIDTH, HEIGHT = 900, 500
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Sorting Visualizer")
+
 
 def screenControl ():
     run = True
@@ -14,6 +20,13 @@ def screenControl ():
 
 if __name__ = "__screenControl__":
     screenControl()
+
+def fillList():
+    for i in (1, 101):
+        listOfChoice.append(i)
+
+def randomizeList():
+    return random.shuffle(listOfChoice)
 
 #Credit to Geeks for Geeks Website for pseudocode on how to do insertion sort
 def insertionSort(list):
