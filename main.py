@@ -1,6 +1,6 @@
 import pygame
 import random
-
+#17:57 / 1:35:21
 listOfChoice = []
 #Pygame coding basics learned from TechWithTim
 WHITE = (255, 255, 255)
