@@ -1,4 +1,19 @@
 import pygame
+#Pygame coding basics learned from TechWithTim
+WIDTH, HEIGHT = 900, 500
+SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
+
+def screenControl ():
+    run = True
+    while run:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+
+    pygame.quit()
+
+if __name__ = "__screenControl__":
+    screenControl()
 
 #Credit to Geeks for Geeks Website for pseudocode on how to do selection sort
 def selectionSort(list):
@@ -12,7 +27,7 @@ def selectionSort(list):
 
 
 def bubbleSort(list):
-    while order(list) == false:
+    while order(list) == False:
         for i in range(0, len(list)):
             if list[i] > list[i + 1]:
                 list.insert(i, i + 1)
@@ -26,6 +41,6 @@ def order(list):
         if list[i] > list[i - 1] && list[i] < list[i + 1]:
             truthCounter = truthCounter + 1
     if truthCounter == len(list):
-        return true 
+        return True 
     else:
-        return false
+        return False
