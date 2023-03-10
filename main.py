@@ -15,6 +15,7 @@ def screenControl ():
 if __name__ = "__screenControl__":
     screenControl()
 
+#Credit to Geeks for Geeks Website for pseudocode on how to do insertion sort
 def insertionSort(list):
     for i in range(1, len(list)):
         j = i
