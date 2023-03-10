@@ -2,20 +2,27 @@ import pygame
 import random
 
 listOfChoice = []
-
 #Pygame coding basics learned from TechWithTim
+WHITE = (255, 255, 255)
+FPS = 60
 WIDTH, HEIGHT = 900, 500
+
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Sorting Visualizer")
 
+def drawingOnScreen ():
+
+    pygame.display.update()
 
 def screenControl ():
+    clock = pygame.time.Clock()
     run = True
     while run:
+        clock.tick(FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-
+        drawingOnScreen()
     pygame.quit()
 
 if __name__ = "__screenControl__":
