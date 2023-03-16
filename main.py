@@ -51,7 +51,6 @@ def selectionSort(list):
         list[minIndex], list[i] = list[i], list[minIndex]
     return list
 
-
 def bubbleSort(list):
     while order(list) == False:
         for i in range(0, len(list)):
@@ -59,7 +58,6 @@ def bubbleSort(list):
                 list.insert(i, i + 1)
                 list.pop(i + 2)
     return list
-
 
 def order(list):
     truthCounter = 0
