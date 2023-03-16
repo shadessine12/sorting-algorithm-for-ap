@@ -25,8 +25,6 @@ def screenControl ():
         drawingOnScreen()
     pygame.quit()
 
-if __name__ = "__screenControl__":
-    screenControl()
 
 def fillList():
     for i in (1, 101):
@@ -39,7 +37,7 @@ def randomizeList():
 def insertionSort(list):
     for i in range(1, len(list)):
         j = i
-        while j > 0 && list[j - 1] > list[j]:
+        while j > 0 and list[j - 1] > list[j]:
             list[j - 1], list[j] = list[j], list[j-1]
             j = j -1
 
@@ -66,9 +64,11 @@ def bubbleSort(list):
 def order(list):
     truthCounter = 0
     for i in range(0, len(list)):
-        if list[i] > list[i - 1] && list[i] < list[i + 1]:
+        if list[i] > list[i - 1] and list[i] < list[i + 1]:
             truthCounter = truthCounter + 1
     if truthCounter == len(list):
         return True 
     else:
         return False
+
+screenControl()
