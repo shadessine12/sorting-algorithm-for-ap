@@ -5,15 +5,31 @@ listOfChoice = []
 #Pygame coding basics learned from TechWithTim
 WHITE = (255, 255, 255)
 FPS = 60
-WIDTH, HEIGHT = 900, 500
-
+WIDTH, HEIGHT = 1000, 500
+tempRect = 0
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Sorting Visualizer")
 second_surface = pygame.Surface([100, 200])
-def drawingOnScreen ():
-    SCREEN.fill(WHITE)
-    SCREEN.blit(second_surface,(0, 50))
-    pygame.display.update()
+SCREEN.fill(WHITE)
+def fillList(listOfChoice):
+    for i in range(1, 101):
+        listOfChoice.append(i)
+
+fillList(listOfChoice)
+
+def randomizeList(listOfChoice):
+    return random.shuffle(listOfChoice)
+
+randomizeList(listOfChoice)
+print(listOfChoice)
+
+#def drawingOnScreen ():
+#    for i in range(0, len(listOfChoice)):
+#        width = 0
+#        tempRect = pygame.Surface([10, listOfChoice[i]])
+#        SCREEN.blit(tempRect, (width, 400))
+#        width = width + 10
+#        pygame.display.update()
 
 def screenControl ():
     clock = pygame.time.Clock()
@@ -23,16 +39,15 @@ def screenControl ():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-        drawingOnScreen()
+        width = 0
+        for i in range(len(listOfChoice)):
+            tempRect = pygame.Surface([10, listOfChoice[i]])
+            placement = 500 - listOfChoice[i]
+            SCREEN.blit(tempRect, (width, placement))
+            width = width + 10
+            pygame.display.update()
+#        drawingOnScreen()
     pygame.quit()
-
-
-def fillList():
-    for i in (1, 101):
-        listOfChoice.append(i)
-
-def randomizeList():
-    return random.shuffle(listOfChoice)
 
 #Credit to Geeks for Geeks Website for pseudocode on how to do insertion sort
 def insertionSort(list):
