@@ -1,5 +1,6 @@
 import pygame
 import random
+import time
 #17:57 / 1:35:21
 listOfChoice = []
 #Pygame coding basics learned from TechWithTim
@@ -12,26 +13,37 @@ pygame.display.set_caption("Sorting Visualizer")
 second_surface = pygame.Surface([100, 200])
 SCREEN.fill(WHITE)
 
+
 def fillList(listOfChoice):
     for i in range(1, 101):
         listOfChoice.append(i)
 
+
 fillList(listOfChoice)
+
 
 def randomizeList(listOfChoice):
     return random.shuffle(listOfChoice)
 
+
 randomizeList(listOfChoice)
 print(listOfChoice)
 
+
 def drawingOnScreen ():
     width = 0
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
     for i in range(len(listOfChoice)):
-        tempRect = pygame.Surface([10, listOfChoice[i]])
+        #Potential improvement could be changing listOfChoice to fractions and then multiplying them by the height
+        tempRect = pygame.Surface([WIDTH/len(listOfChoice), listOfChoice[i]])
         placement = 500 - listOfChoice[i]
         SCREEN.blit(tempRect, (width, placement))
         width = width + 10
         pygame.display.update()
+        pygame.event.get()
+
 
 def screenControl ():
     clock = pygame.time.Clock()
@@ -42,6 +54,7 @@ def screenControl ():
             if event.type == pygame.QUIT:
                 run = False
 #Reminder to Self for NEXT SESSION Fix Index problem
+        selectionSort(listOfChoice)
         drawingOnScreen()
     pygame.quit()
 
@@ -52,6 +65,7 @@ def insertionSort(list):
         while j > 0 and list[j - 1] > list[j]:
             list[j - 1], list[j] = list[j], list[j-1]
             j = j -1
+            drawingOnScreen()
 
 #Credit to Geeks for Geeks Website for pseudocode on how to do selection sort
 def selectionSort(list):
@@ -61,6 +75,7 @@ def selectionSort(list):
             if list[j] < list[minIndex]:
                 minIndex = j
         list[minIndex], list[i] = list[i], list[minIndex]
+        drawingOnScreen()
     return list
 
 def bubbleSort(list):
@@ -69,6 +84,8 @@ def bubbleSort(list):
             if list[i] > list[i + 1]:
                 list.insert(i, i + 1)
                 list.pop(i + 2)
+            time.sleep(0.5)
+            drawingOnScreen()
     return list
 
 def order(list):
