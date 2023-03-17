@@ -9,9 +9,10 @@ WIDTH, HEIGHT = 900, 500
 
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Sorting Visualizer")
-
+second_surface = pygame.Surface([100, 200])
 def drawingOnScreen ():
-
+    SCREEN.fill(WHITE)
+    SCREEN.blit(second_surface,(0, 50))
     pygame.display.update()
 
 def screenControl ():
