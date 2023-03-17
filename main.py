@@ -53,7 +53,7 @@ def screenControl ():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-#Reminder to Self for NEXT SESSION Fix Index problem
+#Reminder to Self for NEXT SESSION Fix Index problem and Prevent Crashes (Potentially from miscoded sorts)
         selectionSort(listOfChoice)
         drawingOnScreen()
     pygame.quit()
