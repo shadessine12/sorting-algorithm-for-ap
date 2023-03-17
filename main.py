@@ -11,6 +11,7 @@ SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Sorting Visualizer")
 second_surface = pygame.Surface([100, 200])
 SCREEN.fill(WHITE)
+
 def fillList(listOfChoice):
     for i in range(1, 101):
         listOfChoice.append(i)
@@ -23,13 +24,14 @@ def randomizeList(listOfChoice):
 randomizeList(listOfChoice)
 print(listOfChoice)
 
-#def drawingOnScreen ():
-#    for i in range(0, len(listOfChoice)):
-#        width = 0
-#        tempRect = pygame.Surface([10, listOfChoice[i]])
-#        SCREEN.blit(tempRect, (width, 400))
-#        width = width + 10
-#        pygame.display.update()
+def drawingOnScreen ():
+    width = 0
+    for i in range(len(listOfChoice)):
+        tempRect = pygame.Surface([10, listOfChoice[i]])
+        placement = 500 - listOfChoice[i]
+        SCREEN.blit(tempRect, (width, placement))
+        width = width + 10
+        pygame.display.update()
 
 def screenControl ():
     clock = pygame.time.Clock()
@@ -39,14 +41,8 @@ def screenControl ():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-        width = 0
-        for i in range(len(listOfChoice)):
-            tempRect = pygame.Surface([10, listOfChoice[i]])
-            placement = 500 - listOfChoice[i]
-            SCREEN.blit(tempRect, (width, placement))
-            width = width + 10
-            pygame.display.update()
-#        drawingOnScreen()
+#Reminder to Self for NEXT SESSION Fix Index problem
+        drawingOnScreen()
     pygame.quit()
 
 #Credit to Geeks for Geeks Website for pseudocode on how to do insertion sort
