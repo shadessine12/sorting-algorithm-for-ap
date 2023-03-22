@@ -10,7 +10,6 @@ WIDTH, HEIGHT = 1000, 500
 tempRect = 0
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Sorting Visualizer")
-second_surface = pygame.Surface([100, 200])
 SCREEN.fill(WHITE)
 
 
@@ -29,35 +28,6 @@ def randomizeList(listOfChoice):
 randomizeList(listOfChoice)
 print(listOfChoice)
 
-
-def drawingOnScreen ():
-    width = 0
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            run = False
-    for i in range(len(listOfChoice)):
-        #Potential improvement could be changing listOfChoice to fractions and then multiplying them by the height
-        tempRect = pygame.Surface([WIDTH/len(listOfChoice), listOfChoice[i]])
-        placement = 500 - listOfChoice[i]
-        SCREEN.blit(tempRect, (width, placement))
-        width = width + 10
-        pygame.display.update()
-        pygame.event.get()
-
-
-def screenControl ():
-    clock = pygame.time.Clock()
-    run = True
-    while run:
-        clock.tick(FPS)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                run = False
-#Reminder to Self for NEXT SESSION Fix Index problem and Prevent Crashes (Potentially from miscoded sorts)
-        selectionSort(listOfChoice)
-        drawingOnScreen()
-    pygame.quit()
-
 #Credit to Geeks for Geeks Website for pseudocode on how to do insertion sort
 def insertionSort(list):
     for i in range(1, len(list)):
@@ -65,6 +35,7 @@ def insertionSort(list):
         while j > 0 and list[j - 1] > list[j]:
             list[j - 1], list[j] = list[j], list[j-1]
             j = j -1
+            time.sleep(0.5)
             drawingOnScreen()
 
 #Credit to Geeks for Geeks Website for pseudocode on how to do selection sort
@@ -75,7 +46,9 @@ def selectionSort(list):
             if list[j] < list[minIndex]:
                 minIndex = j
         list[minIndex], list[i] = list[i], list[minIndex]
-        drawingOnScreen()
+        print(listOfChoice)
+        #drawingOnScreen()
+        #time.sleep(0.5)
     return list
 
 def bubbleSort(list):
@@ -94,8 +67,49 @@ def order(list):
         if list[i] > list[i - 1] and list[i] < list[i + 1]:
             truthCounter = truthCounter + 1
     if truthCounter == len(list):
-        return True 
+        return True
     else:
         return False
+
+
+def drawingOnScreen ():
+    width = 0
+    for i in range(len(listOfChoice)):
+        #Potential improvement could be changing listOfChoice to fractions and then multiplying them by the height
+        tempRect = pygame.Surface([WIDTH/len(listOfChoice), listOfChoice[i]])
+        placement = 500 - listOfChoice[i]
+        SCREEN.blit(tempRect, (width, placement))
+        width = width + 10
+        pygame.display.update()
+        pygame.event.get()
+
+def nextIteration (listOfChoice):
+    SCREEN.fill(WHITE)
+    width = 0
+    for i in range(len(listOfChoice)):
+        # Potential improvement could be changing listOfChoice to fractions and then multiplying them by the height
+        tempRect = pygame.Surface([WIDTH / len(listOfChoice), listOfChoice[i]])
+        placement = 500 - listOfChoice[i]
+        SCREEN.blit(tempRect, (width, placement))
+        width = width + 10
+        pygame.display.update()
+        pygame.event.get()
+
+def screenControl ():
+    clock = pygame.time.Clock()
+    run = True
+    while run:
+        clock.tick(FPS)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+#Reminder to Self for NEXT SESSION Fix Index problem and Prevent Crashes (Potentially from miscoded sorts)
+        drawingOnScreen()
+        time.sleep(10)
+        nextIteration(selectionSort(listOfChoice))
+        #insertionSort(listOfChoice)
+    pygame.quit()
+
+
 
 screenControl()
