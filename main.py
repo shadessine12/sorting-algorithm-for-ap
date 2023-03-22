@@ -1,7 +1,7 @@
 import pygame
 import random
 import time
-#17:57 / 1:35:21
+import sys
 listOfChoice = []
 #Pygame coding basics learned from TechWithTim
 WHITE = (255, 255, 255)
@@ -11,6 +11,7 @@ tempRect = 0
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Sorting Visualizer")
 SCREEN.fill(WHITE)
+sorting = False
 
 
 def fillList(listOfChoice):
@@ -35,7 +36,7 @@ def insertionSort(list):
         while j > 0 and list[j - 1] > list[j]:
             list[j - 1], list[j] = list[j], list[j-1]
             j = j -1
-            time.sleep(0.5)
+            time.sleep(0.1)
             drawingOnScreen()
 
 #Credit to Geeks for Geeks Website for pseudocode on how to do selection sort
@@ -45,10 +46,10 @@ def selectionSort(list):
         for j in range(i + 1, len(list)):
             if list[j] < list[minIndex]:
                 minIndex = j
+
         list[minIndex], list[i] = list[i], list[minIndex]
-        print(listOfChoice)
-        #drawingOnScreen()
-        #time.sleep(0.5)
+        drawingOnScreen()
+        time.sleep(0.1)
     return list
 
 def bubbleSort(list):
@@ -73,27 +74,20 @@ def order(list):
 
 
 def drawingOnScreen ():
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            sys.exit()
     width = 0
+    SCREEN.fill(WHITE)
     for i in range(len(listOfChoice)):
         #Potential improvement could be changing listOfChoice to fractions and then multiplying them by the height
         tempRect = pygame.Surface([WIDTH/len(listOfChoice), listOfChoice[i]])
         placement = 500 - listOfChoice[i]
         SCREEN.blit(tempRect, (width, placement))
         width = width + 10
-        pygame.display.update()
-        pygame.event.get()
 
-def nextIteration (listOfChoice):
-    SCREEN.fill(WHITE)
-    width = 0
-    for i in range(len(listOfChoice)):
-        # Potential improvement could be changing listOfChoice to fractions and then multiplying them by the height
-        tempRect = pygame.Surface([WIDTH / len(listOfChoice), listOfChoice[i]])
-        placement = 500 - listOfChoice[i]
-        SCREEN.blit(tempRect, (width, placement))
-        width = width + 10
-        pygame.display.update()
-        pygame.event.get()
+    pygame.display.update()
+
 
 def screenControl ():
     clock = pygame.time.Clock()
@@ -104,12 +98,11 @@ def screenControl ():
             if event.type == pygame.QUIT:
                 run = False
 #Reminder to Self for NEXT SESSION Fix Index problem and Prevent Crashes (Potentially from miscoded sorts)
+        selectionSort(listOfChoice)
+
         drawingOnScreen()
-        time.sleep(10)
-        nextIteration(selectionSort(listOfChoice))
         #insertionSort(listOfChoice)
     pygame.quit()
-
 
 
 screenControl()
