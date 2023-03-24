@@ -3,8 +3,9 @@ import random
 import time
 import sys
 listOfChoice = []
-#Pygame coding basics learned from TechWithTim
+# Pygame coding basics learned from TechWithTim
 WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
 FPS = 60
 WIDTH, HEIGHT = 1000, 500
 tempRect = 0
@@ -12,7 +13,7 @@ SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Sorting Visualizer")
 SCREEN.fill(WHITE)
 sorting = False
-
+sortingType = "Nothing"
 
 def fillList(listOfChoice):
     for i in range(1, 101):
@@ -74,17 +75,31 @@ def order(list):
 
 
 def drawingOnScreen ():
+    global sorting
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
     width = 0
     SCREEN.fill(WHITE)
-    for i in range(len(listOfChoice)):
-        #Potential improvement could be changing listOfChoice to fractions and then multiplying them by the height
-        tempRect = pygame.Surface([WIDTH/len(listOfChoice), listOfChoice[i]])
-        placement = 500 - listOfChoice[i]
-        SCREEN.blit(tempRect, (width, placement))
-        width = width + 10
+    # Button help from GeeksforGeeks.org on how to make a button
+    if not sorting:
+        insertionButton = pygame.Rect([270, 150, 200, 100])
+        selectionButton = pygame.Rect([520, 150, 200, 100])
+        pygame.draw.rect(SCREEN, BLACK, insertionButton)
+        pygame.draw.rect(SCREEN, BLACK, selectionButton)
+        click, _, _ = pygame.mouse.get_pressed()
+        if click == 1:
+            mouse = pygame.mouse.get_pos()
+            if insertionButton.collidepoint(mouse):
+                sorting = True
+                sortingType = "insertion"
+    else:
+        for i in range(len(listOfChoice)):
+            #Potential improvement could be changing listOfChoice to fractions and then multiplying them by the height
+            tempRect = pygame.Surface([WIDTH/len(listOfChoice), listOfChoice[i]])
+            placement = 500 - listOfChoice[i]
+            SCREEN.blit(tempRect, (width, placement))
+            width = width + 10
 
     pygame.display.update()
 
@@ -97,11 +112,8 @@ def screenControl ():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-#Reminder to Self for NEXT SESSION Fix Index problem and Prevent Crashes (Potentially from miscoded sorts)
         selectionSort(listOfChoice)
-
         drawingOnScreen()
-        #insertionSort(listOfChoice)
     pygame.quit()
 
 
