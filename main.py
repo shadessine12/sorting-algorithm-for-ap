@@ -57,26 +57,6 @@ def selectionSort(list):
         time.sleep(0.1)
     return list
 
-def bubbleSort(list):
-    while order(list) == False:
-        for i in range(0, len(list)):
-            if list[i] > list[i + 1]:
-                list.insert(i, i + 1)
-                list.pop(i + 2)
-            time.sleep(0.5)
-            drawingOnScreen()
-    return list
-
-def order(list):
-    truthCounter = 0
-    for i in range(0, len(list)):
-        if list[i] > list[i - 1] and list[i] < list[i + 1]:
-            truthCounter = truthCounter + 1
-    if truthCounter == len(list):
-        return True
-    else:
-        return False
-
 
 def drawingOnScreen ():
     global sorting
@@ -92,8 +72,8 @@ def drawingOnScreen ():
         selectionButton = pygame.Rect([520, 150, 200, 100])
         pygame.draw.rect(SCREEN, BLACK, insertionButton)
         pygame.draw.rect(SCREEN, BLACK, selectionButton)
-        SCREEN.blit(textIS, (270, 150))
-        SCREEN.blit(textSS, (520, 150))
+        SCREEN.blit(textIS, (275, 185))
+        SCREEN.blit(textSS, (525, 185))
         click, _, _ = pygame.mouse.get_pressed()
         if click == 1:
             mouse = pygame.mouse.get_pos()
@@ -113,7 +93,7 @@ def drawingOnScreen ():
 
     pygame.display.update()
 
-
+'''Function is used to run all '''
 def screenControl ():
     clock = pygame.time.Clock()
     run = True
