@@ -2,6 +2,7 @@ import pygame
 import random
 import time
 import sys
+pygame.init()
 listOfChoice = []
 # Pygame coding basics learned from TechWithTim
 WHITE = (255, 255, 255)
@@ -14,6 +15,9 @@ pygame.display.set_caption("Sorting Visualizer")
 SCREEN.fill(WHITE)
 sorting = False
 sortingType = "Nothing"
+smallFont = pygame.font.SysFont('Corbel', 35)
+textIS = smallFont.render('Insertion Sort', True, WHITE)
+textSS = smallFont.render('Selection Sort', True, WHITE)
 
 def fillList(listOfChoice):
     for i in range(1, 101):
@@ -76,6 +80,7 @@ def order(list):
 
 def drawingOnScreen ():
     global sorting
+    global sortingType
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
@@ -87,12 +92,17 @@ def drawingOnScreen ():
         selectionButton = pygame.Rect([520, 150, 200, 100])
         pygame.draw.rect(SCREEN, BLACK, insertionButton)
         pygame.draw.rect(SCREEN, BLACK, selectionButton)
+        SCREEN.blit(textIS, (270, 150))
+        SCREEN.blit(textSS, (520, 150))
         click, _, _ = pygame.mouse.get_pressed()
         if click == 1:
             mouse = pygame.mouse.get_pos()
             if insertionButton.collidepoint(mouse):
                 sorting = True
                 sortingType = "insertion"
+            if selectionButton.collidepoint(mouse):
+                sorting =True
+                sortingType = "selection"
     else:
         for i in range(len(listOfChoice)):
             #Potential improvement could be changing listOfChoice to fractions and then multiplying them by the height
@@ -112,7 +122,12 @@ def screenControl ():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-        selectionSort(listOfChoice)
+        if sortingType == "insertion":
+            insertionSort(listOfChoice)
+            drawingOnScreen()
+        elif sortingType == "selection":
+            selectionSort(listOfChoice)
+            drawingOnScreen()
         drawingOnScreen()
     pygame.quit()
 
