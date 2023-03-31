@@ -71,7 +71,6 @@ def selectionSort(list):
         list[minIndex], list[i] = list[i], list[minIndex]
         drawingOnScreen()
         time.sleep(0.1)
-    return list
 
 
 '''
