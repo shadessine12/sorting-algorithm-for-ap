@@ -1,4 +1,5 @@
-# Make sure to credit for help with button
+# Button creation tutorial found on GeeksforGeeks.org
+# Debugging help found on stack overflow(button font error)
 # Creating all global variables and importing necessary libraries for program to run.
 import pygame
 import random
@@ -26,16 +27,16 @@ fillList is used to add all of the elements to the list which is called listOfCh
 randomizeList is using a function given to every Python user 
 which will randomize the indexes of the list in question.
 '''
-def fillList(listOfChoice):
+def fillList(list):
     for i in range(1, 101):
-        listOfChoice.append(i)
+        list.append(i)
 
 
 fillList(listOfChoice)
 
 
-def randomizeList(listOfChoice):
-    return random.shuffle(listOfChoice)
+def randomizeList(list):
+    return random.shuffle(list)
 
 
 randomizeList(listOfChoice)
