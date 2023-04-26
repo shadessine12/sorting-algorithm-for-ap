@@ -53,7 +53,7 @@ def insertionSort(list):
         while j > 0 and list[j - 1] > list[j]:
             list[j - 1], list[j] = list[j], list[j-1]
             j = j -1
-            time.sleep(0.1)
+            time.sleep(0.01)
             drawingOnScreen()
 
 #Credit to Geeks for Geeks Website for pseudocode on how to do selection sort
