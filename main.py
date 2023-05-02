@@ -46,6 +46,10 @@ print(listOfChoice)
 '''
 A kind of sort that keeps swapping the number until it is at its lowest point.
 It will keep doing this to each number in the list until everything is set up.
+The following is meant to ensure that AP instructions are followed, but may be considered unnecessary
+Function Name: insertionSort
+Return Type: N/A
+Parameter type/name: List / list
 '''
 def insertionSort(list):
     for i in range(1, len(list)):
@@ -78,7 +82,7 @@ This function is used as the function
 that will create the screen that shall show the sorting of the list through rectangles. 
 This function first shows a menu screen where the type of sort can be selected.
 Once the type of sort is selected, it shall begin sorting itself through the screenControl function 
-which shall start to run it.
+which shall start to run it. Partner helped fix this code.
 '''
 def drawingOnScreen ():
     global sorting
